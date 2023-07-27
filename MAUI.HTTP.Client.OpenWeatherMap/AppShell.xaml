@@ -4,11 +4,45 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MAUI.HTTP.Client.OpenWeatherMap"
+    xmlns:view="clr-namespace:MAUI.HTTP.Client.OpenWeatherMap.View"
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+    
+    <!--
+    Falk
+    
+     <TabBar>
+
+        <ShellContent
+            Title="Home "
+            ContentTemplate="{DataTemplate view:MainPage}" 
+            Icon="icon_home" />
+        
+        <ShellContent
+            Title="Weatherforecast"
+            ContentTemplate="{DataTemplate view:WeatherMainPage}" />
+
+        <ShellContent
+            Title="About"
+            ContentTemplate="{DataTemplate view:AboutPage}"
+            Icon="icon_about" />
+
+        
+        <ShellContent
+            Title="Weatherforecast - v.00"
+             ContentTemplate="{DataTemplate view:MainPage}" />
+             "{DataTemplate view:WeatherMainPage}"
+        
+        <ShellContent
+            Title="Weatherforecast01"
+            ContentTemplate="{DataTemplate view:MainPage}" />
+
+    </TabBar>
+
+    -->
 
 </Shell>
