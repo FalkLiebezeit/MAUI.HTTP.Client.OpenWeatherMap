@@ -6,8 +6,8 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-        // Falk
-        //  Bootstrapper.Init();
+        
+        Bootstrapper.Init();
 
         MainPage = new AppShell();
 	}

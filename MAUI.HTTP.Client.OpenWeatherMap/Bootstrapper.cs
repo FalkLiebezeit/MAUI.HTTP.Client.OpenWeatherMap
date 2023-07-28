@@ -19,7 +19,7 @@ public class Bootstrapper
 
         */
 
-        /*
+        
         ContainerBuilder containerBuilder = new();
 
         containerBuilder.RegisterType<OpenWeatherMapWeatherService>().As<IWeatherService>();
@@ -30,7 +30,7 @@ public class Bootstrapper
         Autofac.IContainer container = containerBuilder.Build();
 
         Resolver.Initialize(container);
-        */
+        
     }
 
 }

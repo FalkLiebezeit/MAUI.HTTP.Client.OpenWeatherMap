@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:behaviors="clr-namespace:MAUI.HTTP.Client.OpenWeatherMap.Behavior" 
+             xmlns:controls="clr-namespace:MAUI.HTTP.Client.OpenWeatherMap.Control" 
+             x:Class="MAUI.HTTP.Client.OpenWeatherMap.View.WeatherMainPage"
+              Title="{Binding City}"
+             BackgroundImageSource="Resources\BackGrnds\ForeCastView_BackGrnd.png">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="Resources\AppIcon\refresh.png" Text="Refresh" Command="{Binding Refresh}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        <Grid>
+
+            <ScrollView >
+                <!-- BackgroundColor="Transparent"-->
+
+                <controls:RepeaterView ItemsSource="{Binding Days}" Direction="Column">
+
+                    <controls:RepeaterView.ItemsTemplate>
+
+                        <DataTemplate>
+
+                            <StackLayout>
+
+                                <ContentView Padding="10" BackgroundColor="#9F5010">
+                                    <Label Text="{Binding DateAsString}" TextColor="White" FontAttributes="Bold" />
+                                </ContentView>
+
+                                <controls:RepeaterView ItemsSource="{Binding Items}" Wrap="Wrap" JustifyContent="Start" AlignItems="Start">
+                                    <controls:RepeaterView.Behaviors>
+                                        <behaviors:RepeaterViewBehavior />
+                                    </controls:RepeaterView.Behaviors>
+                                    <controls:RepeaterView.ItemsTemplate>
+                                        <DataTemplate>
+                                            <StackLayout Margin="10" Padding="20" WidthRequest="150" BackgroundColor="#99FFFFFF">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup>
+                                                        <VisualState Name="Portrait">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="WidthRequest" Value="150" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                        <VisualState Name="Landscape">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="WidthRequest" Value="200" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <Label FontSize="16" FontAttributes="Bold" Text="{Binding TimeAsString}" HorizontalOptions="Center" />
+                                                <Image WidthRequest="100" HeightRequest="100" Aspect="AspectFit" HorizontalOptions="Center" Source="{Binding Icon}">
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup>
+                                                            <VisualState Name="Portrait">
+                                                                <VisualState.Setters>
+                                                                    <Setter Property="WidthRequest" Value="100" />
+                                                                    <Setter Property="HeightRequest" Value="100" />
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+                                                            <VisualState Name="Landscape">
+                                                                <VisualState.Setters>
+                                                                    <Setter Property="WidthRequest" Value="150" />
+                                                                    <Setter Property="HeightRequest" Value="150" />
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                </Image>
+                                                <Label FontSize="14" FontAttributes="Bold" Text="{Binding Temperature, StringFormat='{0}° C'}" HorizontalOptions="Center" />
+                                                <Label FontSize="14" FontAttributes="Bold" Text="{Binding Description}" HorizontalOptions="Center" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </controls:RepeaterView.ItemsTemplate>
+                                </controls:RepeaterView>
+                            </StackLayout>
+                        </DataTemplate>
+
+                    </controls:RepeaterView.ItemsTemplate>
+                </controls:RepeaterView>
+            </ScrollView>
+
+            <Frame IsVisible="{Binding IsRefreshing}" BackgroundColor="#99FFFFFF" 
+                   WidthRequest="100" HeightRequest="100" VerticalOptions="Center" HorizontalOptions="Center">
+
+                <ActivityIndicator Color="Black" IsRunning="True" />
+
+            </Frame>
+
+        </Grid>
+
+    </ContentPage.Content>
+
+
+
+</ContentPage>
